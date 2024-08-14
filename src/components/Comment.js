@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editComment, deleteComment, addReply, likeComment } from '../redux/actions';
+import { editComment, deleteComment, addReply, toggleLikeComment } from '../redux/actions';
 import Reply from './Reply';
 import { formatDate } from '../utils/dateUtils';
-import { FaHeart, FaReply, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaReply, FaEdit, FaTrash } from 'react-icons/fa';
+import styles from '../styles.css';
 
 const Comment = ({ comment }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -34,62 +35,63 @@ const Comment = ({ comment }) => {
   };
 
   const handleLike = () => {
-    dispatch(likeComment(comment.id));
+    dispatch(toggleLikeComment(comment.id));
   };
+
   return (
-    <div className="comment">
-      <div className="comment-header">
+    <div className={styles.comment}>
+      <div className={styles.commentHeader}>
         <h4>{comment.name}</h4>
-        <span>{formatDate(comment.date)}</span>
+        <span className={styles.date}>{formatDate(comment.date)}</span>
       </div>
       {isEditing ? (
         <textarea
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-          className="edit-textarea"
+          className={styles.editTextarea}
         />
       ) : (
         <p>{comment.text}</p>
       )}
-      <div className="comment-actions">
-        <button onClick={handleLike} className="action-btn like-btn">
-          <FaHeart /> {comment.likes || 0}
+      <div className={styles.actions}>
+        <button onClick={handleLike} className={`${styles.actionBtn} ${styles.likeBtn}`}>
+          {comment.likes ? <FaHeart /> : <FaRegHeart />} {comment.likes || 0}
         </button>
-        <button onClick={() => setShowReplyForm(!showReplyForm)} className="action-btn reply-btn">
+        <button onClick={() => setShowReplyForm(!showReplyForm)} className={`${styles.actionBtn} ${styles.replyBtn}`}>
           <FaReply /> Reply
         </button>
         {isEditing ? (
-          <button onClick={handleEdit} className="action-btn edit-btn">
+          <button onClick={handleEdit} className={`${styles.actionBtn} ${styles.editBtn}`}>
             Save
           </button>
         ) : (
-          <button onClick={() => setIsEditing(true)} className="action-btn edit-btn">
+          <button onClick={() => setIsEditing(true)} className={`${styles.actionBtn} ${styles.editBtn}`}>
             <FaEdit /> Edit
           </button>
         )}
-        <button onClick={handleDelete} className="action-btn delete-btn">
+        <button onClick={handleDelete} className={`${styles.actionBtn} ${styles.deleteBtn}`}>
           <FaTrash /> Delete
         </button>
       </div>
-
-  
       {showReplyForm && (
-        <div className="reply-form">
+        <div className={styles.replyForm}>
           <input
             type="text"
             placeholder="Your Name"
             value={replyName}
             onChange={(e) => setReplyName(e.target.value)}
+            className={styles.input}
           />
           <textarea
             placeholder="Your Reply"
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
+            className={styles.textarea}
           />
-          <button onClick={handleReply}>Post Reply</button>
+          <button onClick={handleReply} className={styles.button}>Post Reply</button>
         </div>
       )}
-      <div className="replies">
+      <div className={styles.replies}>
         {comment.replies.map(reply => (
           <Reply key={reply.id} reply={reply} commentId={comment.id} />
         ))}

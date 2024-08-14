@@ -5,6 +5,8 @@ export const ADD_REPLY = 'ADD_REPLY';
 export const SORT_COMMENTS = 'SORT_COMMENTS';
 export const LIKE_COMMENT = 'LIKE_COMMENT';
 export const LIKE_REPLY = 'LIKE_REPLY';
+export const TOGGLE_LIKE_COMMENT = 'TOGGLE_LIKE_COMMENT';
+export const TOGGLE_LIKE_REPLY = 'TOGGLE_LIKE_REPLY';
 
 export const addComment = (name, text) => ({
   type: ADD_COMMENT,
@@ -37,5 +39,14 @@ export const likeComment = (id) => ({
   
   export const likeReply = (commentId, replyId) => ({
     type: LIKE_REPLY,
+    payload: { commentId, replyId }
+  });
+  export const toggleLikeComment = (id) => ({
+    type: TOGGLE_LIKE_COMMENT,
+    payload: { id }
+  });
+  
+  export const toggleLikeReply = (commentId, replyId) => ({
+    type: TOGGLE_LIKE_REPLY,
     payload: { commentId, replyId }
   });
