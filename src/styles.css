@@ -1,0 +1,204 @@
+:root {
+    --primary: #0000FF;
+    --secondary: #5E35B1;
+    --background: #F3F4F6;
+    --text: #333333;
+    --light-text: #6B7280;
+    --border: #E5E7EB;
+    --success: #10B981;
+    --danger: #EF4444;
+    --card: #FFFFFF;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--background);
+    margin: 0;
+    padding: 40px 20px;
+  }
+  
+  .app {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--card);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .comment-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  .comment-box input,
+  .comment-box textarea,
+  .reply-form input,
+  .reply-form textarea {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: var(--card);
+    transition: border-color 0.3s ease;
+  }
+  
+  .comment-box input:focus,
+  .comment-box textarea:focus,
+  .reply-form input:focus,
+  .reply-form textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+  }
+  
+  .comment-box textarea,
+  .reply-form textarea {
+    min-height: 120px;
+  }
+  
+  button {
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  button:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .comment, .reply {
+    background-color: var(--card);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .comment:hover, .reply:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  
+  .reply {
+    margin-left: 40px;
+    border-left: 4px solid var(--primary);
+  }
+  
+  .comment-header, .reply-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .comment-header h4, .reply-header h5 {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .comment-header span, .reply-header span {
+    font-size: 14px;
+    color: var(--light-text);
+  }
+  
+  .comment-actions, .reply-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .action-btn {
+    background-color: transparent;
+    color: var(--light-text);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+  }
+  
+  .action-btn:hover {
+    background-color: var(--background);
+    color: var(--primary);
+  }
+  
+  .like-btn { color: #4361EE; }
+  .edit-btn { color: var(--success); }
+  .delete-btn { color: var(--danger); }
+  .reply-btn { color: var(--secondary); }
+  
+  .sorting-options {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .sorting-options select {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    font-size: 16px;
+    background-color: var(--card);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .sorting-options select:hover {
+    border-color: var(--primary);
+  }
+  
+  .edit-textarea {
+    width: 100%;
+    min-height: 120px;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: var(--background);
+    transition: border-color 0.3s ease;
+  }
+  
+  .replies {
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .reply {
+      margin-left: 20px;
+    }
+    
+    .comment-actions, .reply-actions {
+      flex-wrap: wrap;
+    }
+  }
